@@ -56,7 +56,7 @@ series <- function(x = 0, n = 0) {
 x <- as.integer(readline(prompt = "Enter x: "))
 n <- as.integer(readline(prompt = "Enter n: "))
 
-sum(x, n)
+series(x, n)
 
 
 
