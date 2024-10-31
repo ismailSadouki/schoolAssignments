@@ -56,7 +56,8 @@ series <- function(x = 0, n = 0) {
 x <- as.integer(readline(prompt = "Enter x: "))
 n <- as.integer(readline(prompt = "Enter n: "))
 
-series(x, n)
+result = series(x, n)
+cat("X:", x, "N:",n, "Result:", result, "\n")
 
 
 
