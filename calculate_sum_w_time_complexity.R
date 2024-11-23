@@ -7,6 +7,7 @@ calculate_sum <- function(x, n) {
   for (i in 2:n) { #2
     f <- f * (2 * i - 2) * (2 * i - 1) # 9
     p <- p *x*x #3
+      *(2*i-1)*2*i
 
     s <- s + f / p # 3
   }
@@ -19,6 +20,7 @@ n <- 10
 
 result <- calculate_sum(x, n)
 cat("The result of the sum is:", result, "\n")
+
 
 
 
