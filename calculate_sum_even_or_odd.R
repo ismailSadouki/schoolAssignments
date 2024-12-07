@@ -21,8 +21,12 @@ calculate_sum <- function(x, n) {
   return(s) #1
 }
 
-x <- 4
-n <- 9
+x <- 5
+n <- 10
 
 result <- calculate_sum(x, n)
 cat("The result of the sum is:", result, "\n")
+
+
+
+
