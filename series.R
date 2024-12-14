@@ -56,21 +56,14 @@ series <- function(x = 0, n = 0) {
 #x <- as.integer(readline(prompt = "Enter x: "))
 #n <- as.integer(readline(prompt = "Enter n: "))
 
-#result = series(x, n)
+result = series(10, 5)
+print(result)
 #cat("X:", x, "N:",n, "Result:", result, "\n")
 
 
 
 
 
-
-
-s <- 0
-f <- 1
-p <- 1
-for (i in 1:n) {
-  
-}
 
 
 

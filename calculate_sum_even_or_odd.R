@@ -22,7 +22,7 @@ calculate_sum <- function(x, n) {
 }
 
 x <- 5
-n <- 10
+n <- 11
 
 result <- calculate_sum(x, n)
 cat("The result of the sum is:", result, "\n")
