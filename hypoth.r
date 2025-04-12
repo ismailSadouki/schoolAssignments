@@ -4,29 +4,70 @@ print(BDD$test.avant)
 attach(BDD)
 
 names(BDD)
-n <- length(test.avant)
 
-Dif <- test.avant - test.apres
+aggregate(test.avant~genre, data=BDD, mean)
 
 
-if (n >= 30) {
-  cat("Sample size is large (n >= 30), using t-test\n")
-  test_result <- t.test(test.avant, test.apres, paired = TRUE)
-} else {
-  shapiro_result <- shapiro.test(Dif)
+auto.t.test <- function(y, x, BDD) {
   
-  if (shapiro_result$p.value > 0.05) {
-    cat("Data follows a normal distribution, using t-test\n")
-    test_result <- t.test(test.avant, test.apres, paired = TRUE)
-  } else {
-    cat("Data is not normally distributed, using Wilcoxon test\n")
-    test_result <- wilcox.test(test.avant, test.apres, paired = TRUE)
-  }
-}
-print(test_result$p.value)
+  N <- aggregate(y ~ x, data=BDD, length)
 
-if (test_result$p.value < 0.05) {
-  cat("p-value < 0.05: Significant difference detected (Reject H0)\n")
-} else {
-  cat("p-value >= 0.05: No significant difference detected (Fail to reject H0)\n")
+  if (N[1,2] >= 30 && N[2,2] >=30) {
+    Normal <- TRUE
+  } else {
+    if((N[1,2]+N[2,2]) >= 25) {
+      Normal <- (ks.test(y, "pnorm")$p.value>=0.05)
+      
+    } else {
+      Normal <- (shapiro.test(y)$p.value >= 0.05)
+    }
+  }
+  
+  if (Normal == TRUE) {
+    var_test_result <- var.test(y ~ x) 
+    Homog <- (var_test_result$p.value >= 0.05)
+    result <- t.test(y~x, var.equal=Homog)
+
+  } else {
+    result <- wilcox.test(y~x)
+  }
+  return(resutl)
 }
+
+
+auto.t.test(test.avant, genre, BDD)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
